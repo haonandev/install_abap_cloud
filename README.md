@@ -101,13 +101,75 @@ sudo docker run \
   -p 50001:50001 \
   sapse/abap-cloud-developer-trial:2023
 ```
-Check if the container is started:
+If you see this error, run the commands:
+<img width="594" height="105" alt="image" src="https://github.com/user-attachments/assets/12407c9d-32bd-4441-86f6-c588733838d6" />
 ```
-sudo docker ps -a
+sudo sysctl vm.max_map_count=2147483647
+sudo sysctl fs.aio-max-nr=18446744073709551615
 ```
-Start container:
+Start the container
 ```
 sudo docker start -ai a4h
 ```
+System is started: \
+<img width="534" height="150" alt="image" src="https://github.com/user-attachments/assets/e304d5f1-f5b9-42e7-a6df-cd2b005f1788" />
+
+# Allow connection to ABAP system
+The ABAP cloud is installed on Docker in the Ubuntu system. Therefore, we need to allow the connection from external network.
+
+Add firewall rule on Google Cloud to allow external connection:
+<img width="872" height="405" alt="image" src="https://github.com/user-attachments/assets/02a115ad-292d-4468-ad9f-60895607d083" />
+
+Detail of the firewall rule:
+<img width="461" height="799" alt="image" src="https://github.com/user-attachments/assets/316ba112-6cb1-44c1-a411-a031ba12bb94" />
+
+Go back to the terminal, run the commands below:
+```
+sudo apt update
+sudo apt install ufw
+sudo ufw enable
+sudo ufw allow 3200/tcp
+sudo ufw allow 3300/tcp
+sudo ufw allow 8443/tcp
+sudo ufw allow 30213/tcp
+sudo ufw allow 50000/tcp
+sudo ufw allow 50001/tcp
+```
+Check status:
+```
+sudo ufw status
+```
+<img width="453" height="270" alt="image" src="https://github.com/user-attachments/assets/d647c8ab-2c53-48b5-83e0-db50b3691b7c" />
+
+# Login to the ABAP cloud system.
+Once the connection is allowed, then we can login to the system from our personal laptop.
+
+Get your public IP, it will return an IP address.
+```
+curl ifconfig.me
+```
+System properties: \
+Application URL: public IP \
+System ID: A4H \
+Instance: 00 \
+Default login credential: \
+Client: 001 \
+Username: DEVELOPER \ 
+Password: ABAPtr2023#00 
+
+<img width="717" height="244" alt="image" src="https://github.com/user-attachments/assets/0dc7dda7-c51e-4f79-b75b-435c04d303ac" />
+
+# Post installation step:
+Run tcode SGEN to PRE-compile all objects.
+<img width="856" height="735" alt="image" src="https://github.com/user-attachments/assets/36ea3c4f-b3cd-4b8b-9d00-bb1b52f1c807" />
+<img width="1297" height="236" alt="image" src="https://github.com/user-attachments/assets/4aa85b6a-d6e3-4268-9fbf-9b391bac6a94" />
+
+Schedule a background job to pre-compile all objects.
+<img width="592" height="207" alt="image" src="https://github.com/user-attachments/assets/4022372d-bd19-469a-ad7e-6b7f7197d194" />
+
+
+
+
+
 
 
