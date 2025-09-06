@@ -1,5 +1,5 @@
 # Install ABAP Cloud Developer Trial on Google Cloud
-# Introduction
+# 1. Introduction
 This is to share how to run ABAP cloud docker image on Google Cloud. \
 ABAP Cloud docker image: https://hub.docker.com/r/sapse/abap-cloud-developer-trial
 
@@ -7,8 +7,8 @@ ABAP Cloud docker image: https://hub.docker.com/r/sapse/abap-cloud-developer-tri
 Google cloud account\
 SAP Logon
 
-# Installation
-## Create virtual machine(VM) on Google Cloud
+# 2. Installation
+## 2.1 Create a virtual machine(VM) on Google Cloud
 Go to Virtual instances -> Create Instances\
 <img width="886" height="258" alt="image" src="https://github.com/user-attachments/assets/8846f2c4-0779-4669-8f51-ddc5cdea878c" />
 
@@ -31,13 +31,13 @@ Networking: Allow HTTP traffic and HTTPS traffic\
 <img width="594" height="271" alt="image" src="https://github.com/user-attachments/assets/d6ccb6ff-3df2-4777-84a4-8a6f2c473226" />
 
 Create the VM with the specifications above.
-## Run VM
+## 2.2 Run VM
 Click on the name, run the VM. Terminal window will appear.\
 <img width="371" height="195" alt="image" src="https://github.com/user-attachments/assets/fc390661-72be-4a52-8f68-c8830c76784b" />
 
 <img width="604" height="432" alt="image" src="https://github.com/user-attachments/assets/12652ac9-bf0f-4e55-9c1b-089e6f078170" />
 
-## Install docker
+## 2.3 Install docker
 Follow the latest installation command on Docker website.\
 https://docs.docker.com/engine/install/ubuntu/ \
 Or run the commands below:
@@ -73,7 +73,7 @@ sudo docker ps -a
 <img width="841" height="58" alt="image" src="https://github.com/user-attachments/assets/21644cb8-15db-4867-8bec-ebb5e5dc5cf8" />
 
 
-## Pull ABAP Cloud docker image
+## 2.4 Pull ABAP Cloud docker image
 After installing Docker, we will pull ABAP cloud Docker image.
 ```
 sudo docker pull sapse/abap-cloud-developer-trial:2023
@@ -109,7 +109,7 @@ sudo sysctl vm.max_map_count=2147483647
 sudo sysctl fs.aio-max-nr=18446744073709551615
 ```
 
-# Setup connection
+# 3 Setup connection
 The ABAP cloud is installed on Docker in the Ubuntu system. Therefore, we need to allow the connection from external network.
 
 Add firewall rule on Google Cloud to allow external connection.
@@ -136,7 +136,7 @@ sudo ufw status
 ```
 <img width="453" height="270" alt="image" src="https://github.com/user-attachments/assets/d647c8ab-2c53-48b5-83e0-db50b3691b7c" />
 
-# Access ABAP cloud system.
+# 4 Access ABAP cloud system.
 Get your public IP, it will return an IP address.
 ```
 curl ifconfig.me
@@ -159,7 +159,7 @@ Password: ABAPtr2023#00
 
 <img width="717" height="244" alt="image" src="https://github.com/user-attachments/assets/0dc7dda7-c51e-4f79-b75b-435c04d303ac" />
 
-# Post installation step
+# 5 Post installation steps
 Update license. \
 Login to client 000 with user ID: SAP*, password: ABAPtr2023#00. \
 Go to Tcode SLICENSE, get the hardware key. \
@@ -181,10 +181,11 @@ Schedule a background job to pre-compile all objects.\
 <img width="632" height="228" alt="image" src="https://github.com/user-attachments/assets/c79fbe7b-ba3f-4fcc-985e-66b654a17a5b" />
 
 Go to SM37, check the job status. It will take few hours to pre-compile all objects.\
-<img width="1117" height="389" alt="image" src="https://github.com/user-attachments/assets/4a40ba6d-f3f4-4b68-b104-7ee21811b203" />
+<img width="1225" height="384" alt="image" src="https://github.com/user-attachments/assets/124aaade-399f-44b3-b40a-fb54e4b5fad3" />
 
-# System is ready
-Once the SGEN job is completed, you can start using the system smoothly.
+
+# Installation completed
+Once the SGEN job is completed, you can start using the system.
 
 
 
