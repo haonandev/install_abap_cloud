@@ -12,7 +12,7 @@ SAP Logon
 Go to Virtual instances -> Create Instances\
 <img width="886" height="258" alt="image" src="https://github.com/user-attachments/assets/8846f2c4-0779-4669-8f51-ddc5cdea878c" />
 
-Create a instances with the parameters below. The best specification is a VM with 32GB RAM, 200GB storage. \
+Create an instance with the parameters below. The best specification is a VM with 32GB RAM and 200GB storage. \
 Name: abapcloud-a4h \
 Region: asia-southeast1 (Singapore) \
 Zone: asia-southeast1-a \
@@ -74,7 +74,7 @@ sudo docker ps -a
 
 
 ## 2.4 Pull ABAP Cloud docker image
-After installing Docker, we will pull ABAP cloud Docker image.
+After installing Docker, pull ABAP cloud Docker image.
 ```
 sudo docker pull sapse/abap-cloud-developer-trial:2023
 ```
@@ -109,8 +109,8 @@ sudo sysctl vm.max_map_count=2147483647
 sudo sysctl fs.aio-max-nr=18446744073709551615
 ```
 
-# 3 Setup connection
-The ABAP cloud is installed on Docker in the Ubuntu system. Therefore, we need to allow the connection from external network.
+# 3. Setup connection
+The ABAP cloud is installed on Docker in the Ubuntu system. Therefore, you need to allow the connection from external network.
 
 Add firewall rule on Google Cloud to allow external connection.
 <img width="872" height="405" alt="image" src="https://github.com/user-attachments/assets/02a115ad-292d-4468-ad9f-60895607d083" />
@@ -136,12 +136,12 @@ sudo ufw status
 ```
 <img width="453" height="270" alt="image" src="https://github.com/user-attachments/assets/d647c8ab-2c53-48b5-83e0-db50b3691b7c" />
 
-# 4 Access ABAP cloud system.
+# 4. Access ABAP cloud system.
 Get your public IP, it will return an IP address.
 ```
 curl ifconfig.me
 ```
-Start the container
+Start the container.
 ```
 sudo docker start -ai a4h
 ```
@@ -159,8 +159,9 @@ Password: ABAPtr2023#00
 
 <img width="717" height="244" alt="image" src="https://github.com/user-attachments/assets/0dc7dda7-c51e-4f79-b75b-435c04d303ac" />
 
-# 5 Post installation steps
-Update license. \
+# 5. Post installation steps
+## 5.1 Update license
+
 Login to client 000 with user ID: SAP*, password: ABAPtr2023#00. \
 Go to Tcode SLICENSE, get the hardware key. \
 Go to this link: https://go.support.sap.com/minisap/#/minisap \
@@ -171,9 +172,11 @@ Enter all required information and generate the license.\
 Go to Tcode SLICENSE again, upload the generated key to system. \
 <img width="384" height="98" alt="image" src="https://github.com/user-attachments/assets/e9437182-7ea8-4ae7-bb5c-e2acf65c80c6" />
 
-Once the license is uploaded to the system, then A4H system will be ready to use.
+Once the license is uploaded to the system, then A4H system will be ready for use.
 
-Run tcode SGEN to pre-compile all objects. \
+## 5.2 Run tcode SGEN
+Run tcode SGEN to compile all objects.
+
 <img width="856" height="735" alt="image" src="https://github.com/user-attachments/assets/36ea3c4f-b3cd-4b8b-9d00-bb1b52f1c807" />
 <img width="1297" height="236" alt="image" src="https://github.com/user-attachments/assets/4aa85b6a-d6e3-4268-9fbf-9b391bac6a94" />
 
