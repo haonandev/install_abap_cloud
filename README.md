@@ -129,6 +129,7 @@ sudo ufw allow 8443/tcp
 sudo ufw allow 30213/tcp
 sudo ufw allow 50000/tcp
 sudo ufw allow 50001/tcp
+sudo ufw allow 22/tcp
 ```
 Check status.
 ```
